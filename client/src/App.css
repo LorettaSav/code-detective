@@ -1,0 +1,79 @@
+#root {
+  max-width: 1280px;
+  margin:0 auto;
+  background-color: #222629;
+  width:90%;
+}
+
+ .navbar {
+  color: #89c232;
+  background-color: #222629;
+  text-decoration: underline;
+  line-height: 1.5;
+ }
+
+
+/* .card {
+  background-color: rgb(204, 53, 93);
+  margin-top: 4vw;
+  margin-bottom: 4vw;
+  border: solid black 1px;
+  padding: 9vw;
+  text-align: center;
+}
+
+.card:hover {
+  background-color:rgb(181, 13, 102) ;
+} */
+
+/* .homeDiv {
+  margin-top: 5vw;
+  text-align: left;
+}
+
+.homeDiv h2 {
+  margin-left: 3vw;
+  color: #dbff64;
+} */
+
+.gameBox {
+  display: flex;
+  margin-top: 10vw;
+}
+.instructionBox {
+  margin-right:2vw;
+}
+
+.levelBox {
+  margin-top: 2vw;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+}
+
+ul li {
+  margin: 0.5vw 1vw;
+}
+
+
+
+/* .cardBox {
+  justify-content: space-between;
+} */
+
+.btn {
+  background-color: #86c232;
+  color:#222629;
+  margin: 1vw 1vw 1vw 0;
+}
+
+.btn:hover {
+  background-color: rgb(247, 74, 120);
+}
+
+.main {
+  padding: 2vw;
+  width: 500px;
+}
