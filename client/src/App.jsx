@@ -19,7 +19,7 @@ function App() {
          <nav className="navbar navbar-expand-lg">
           <div className='container-fluid'>
             <a className="navbar-brand">
-              <img src="./logo1.jpg" alt="" width="40" height="37"/>
+              <img src="https://as1.ftcdn.net/v2/jpg/01/91/03/60/1000_F_191036074_ZfmBrMRgKgxpQLAYqiGAQ0aKtjaybEy0.jpg" alt="" width="40" height="40"/>
             </a>
             <ul className="nav">
               <li className="nav-item">

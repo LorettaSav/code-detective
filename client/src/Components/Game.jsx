@@ -3,36 +3,49 @@ import Compiler from "./Compiler";
 
 export default function Game() {
   const [snippets, setSnippets] = useState([]);
-  const [error, setError] = useState("");
-  const [play, setPlay] = useState(false);
-  //const [level, setLevel] = useState(0);
+  const [error, setError] = useState(""); //handle errors in fetch
+  const [play, setPlay] = useState(false); //to control play button and start of game
+  const [level, setLevel] = useState(0); // to keep track of levels, fetch level snippets and update level on client screen
 
   useEffect(() => {
     getSnippets();
-  }, []);
+  }, [level]); // a dependency of getting appropriate snippets when change of level?
 
+  //setting play to true or false and handle start of game
+  // the level needs to be set to one.
   function handlePlay() {
     setPlay(!play);
+    setLevel(1);
   }
 
+  //Get snippets in random order according to level.
   function getSnippets(level_id) {
     sendRequest("GET", level_id);
   }
+
   async function sendRequest(method, level_id = "", options) {
+    level_id = level;
     try {
       // update task from database
-      const response = await fetch(`/api/snippets/${level_id}`, {
+      const response = await fetch(`/api/snippets/level/${level_id}`, {
         method,
         ...options,
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.message);
       // upon success, update tasks
+      console.log(data)
       setSnippets(data);
     } catch (err) {
       // upon failure, show error message
       setError(err.message);
     }
+  }
+  
+  //a callback function for level changing that needs to be
+  // sent to compiler (child)?
+  function settingLevel() {
+    setLevel(level+1)
   }
 
   return (
@@ -56,14 +69,9 @@ export default function Game() {
         </button>
         <div className="levelBox">{play ? <h5>Level</h5> : null}</div>
       </div>
-      <Compiler snippets={snippets} gamePlay={play} />
+      <Compiler snippets={snippets} gamePlay={play} level={level} setLevel={settingLevel}/>
     </div>
   );
 }
 
-// {
-//     snippets.map( (e) => (
-//     <div key={e.id}>
-//         <li>{e.code}</li>
-//     </div>) )
-// }
+

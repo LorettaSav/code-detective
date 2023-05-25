@@ -1,9 +1,8 @@
 import { useState } from "react"
 
 export default function Timer() {
-
-    const [start, setStart] = useState(0);
-    const [stop, setStop] = useState(true);
+    const [time, setTime] = useState(0);
+    const [isRunning, setIsRunning] = useState(true);
 // i need hours/ minutes and seconds separately
 // 1s = 1000ms
 // 1m = 60000ms
