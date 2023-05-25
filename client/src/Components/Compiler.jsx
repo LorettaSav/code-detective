@@ -36,7 +36,7 @@ export default function Compiler({snippets, gamePlay}) {
       {/* Could maybe add an option for player to choose "light" or "vs-dark" and change page css accordingly?*/}
       <Editor height="20vw" 
       theme={toggleTheme ? "vs-dark" : "light"} 
-      width="50vw"
+      width="47.5vw"
       defaultLanguage="javascript" 
       value= { gamePlay ? value : "//Welcome, Detective!"}
       onMount={handleEditorDidMount}
