@@ -7,6 +7,9 @@ export default function Compiler({ snippets, gamePlay, level, settingLevel}) {
   const editorRef = useRef(null);
   const [toggleTheme, setToggleTheme] = useState(false); //light theme default
   const [inputValue, setInputValue] = useState("");
+  const [compilerValue, setCompilerValue] = useState("");
+  //to know which snippet it is and retrieve when Restart is clicked on 
+  const [currentSnippet, setCurrentSnippet] = useState("");
 
   function handleEditorDidMount(editor, monaco) {
     // here is the editor instance
@@ -14,12 +17,13 @@ export default function Compiler({ snippets, gamePlay, level, settingLevel}) {
     editorRef.current = editor;
   }
 
-  const value = [];
+  let value;
   //so basically this can be my import from DB to show challenges!
   //WHY INFINITE LOOP??????????? maybe this should be in Game instead?
   if( level > 0) {
     const randIndex = Math.floor(Math.random() * snippets.length);
     value = `${snippets.map((e) => e.code)[randIndex]}`;
+    setCurrentSnippet(value);
   }
 
   //Simple functionality of changing editor theme from light to dark. and vice versa.
@@ -30,6 +34,7 @@ export default function Compiler({ snippets, gamePlay, level, settingLevel}) {
   function handleInputValue(e) {
     e.preventDefault();
     const input = editorRef.current.getValue();
+    console.log(input)
     setInputValue(input);
     //sendAttempt(input)
   }
@@ -71,7 +76,7 @@ export default function Compiler({ snippets, gamePlay, level, settingLevel}) {
         theme={toggleTheme ? "vs-dark" : "light"}
         width="47.5vw"
         defaultLanguage="javascript"
-        value={gamePlay ? compilerValue : "//Welcome, Detective!"}
+        value = {gamePlay? value : "//Welcome, Detective!!"}
         onMount={handleEditorDidMount}
         options={{ suggest: { preview: true } }}
       />
@@ -80,8 +85,9 @@ export default function Compiler({ snippets, gamePlay, level, settingLevel}) {
         Submit Answer
       </button>
      {/* This button should only appear if user got question right */}
-      <button className="btn" onClick={handleNextLevel}> Next </button>
+      <button className="btn" onClick={handleNextLevel} disabled> Next </button>
 
     </div>
   );
 }
+

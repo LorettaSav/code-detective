@@ -15,7 +15,13 @@ export default function Game() {
   // the level needs to be set to one.
   function handlePlay() {
     setPlay(!play);
-    setLevel(1);
+    setLevel(1); //not working why???
+    console.log(level)
+  }
+
+  function handleRestart() {
+    setPlay(true);
+    setLevel(level);
   }
 
   //Get snippets in random order according to level.
@@ -25,6 +31,7 @@ export default function Game() {
 
   async function sendRequest(method, level_id = "", options) {
     level_id = level;
+    console.log(level_id)
     try {
       // update task from database
       const response = await fetch(`/api/snippets/level/${level_id}`, {
@@ -47,27 +54,24 @@ export default function Game() {
   function settingLevel() {
     setLevel(level+1)
   }
-
+  
   return (
     <div className="gameBox">
       <div className="instructionBox">
         <h4> Instructions</h4>
         <p className="instructions">
-          {" "}
           Look at the code and spot the error! There are 5 levels of difficulty,
           starting from EASY at Level 1. Can you figure them all out and earn
-          your badge?
+          your Coding badge?
         </p>
 
         <button className="btn" onClick={handlePlay}>
-          {" "}
-          Play{" "}
+          Play
         </button>
-        <button className="btn" onClick={handlePlay}>
-          {" "}
+        <button className="btn" onClick={handleRestart} disabled={!play}>
           Restart Game
         </button>
-        <div className="levelBox">{play ? <h5>Level</h5> : null}</div>
+        <div className="levelBox">{play ? <h5>Level {level}</h5> : null}</div>
       </div>
       <Compiler snippets={snippets} gamePlay={play} level={level} setLevel={settingLevel}/>
     </div>
