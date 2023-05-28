@@ -22,11 +22,11 @@ function App() {
             <ul className="nav">
               <li className="nav-item">
                 <Link to="/" >
-                    Home
+                    Game
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/about">
+                <Link to="/aboutProject">
                     About this project
                 </Link>
               </li>
@@ -56,6 +56,11 @@ function App() {
         <Game play={isPlay}/>
       </div>
 
+      <Routes>
+        <Route path="/" element={<Game />} />
+        {/* what am i doing wrong?*/}
+        <Route path="/aboutProject" element={<About/>} />
+      </Routes>
       
      
     </>
