@@ -90,7 +90,7 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
       <Editor
         height="40vw"
         theme={toggleTheme ? "vs-dark" : "light"}
-        width="47.5vw"
+        width="50vw"
         defaultLanguage="javascript"
         value = {gamePlay? value : "//Welcome, Detective!!"}
         onMount={handleEditorDidMount}

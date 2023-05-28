@@ -80,7 +80,7 @@ function getSum(arr) {
         if( typeof(num) !== number) {  
             return "array of numbers needed"
         } else {  
-            sum += num //sum += arr
+            sum += num 
         }
     }
     return sum;

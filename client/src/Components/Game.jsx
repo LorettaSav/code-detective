@@ -124,8 +124,13 @@ export default function Game() {
           <div className="instructionBox">
             <h4> Instructions</h4>
             <p className="instructions">
-              Look at the code and spot the error! There are 4 levels of difficulty,
-              starting from EASY at Level 1 . Can you figure them all out and earn
+              Look at the code and spot the error!
+              <br />
+              <br />
+              There are 4 levels of difficulty,
+              starting from EASY at Level 1 .
+              <br />
+              Can you figure them all out and earn
               your Coding badge?
             </p>
             
