@@ -67,7 +67,7 @@ export default function Game() {
 
   function handleNextLevel() {
      //to check that we are not on the last level
-     if(level!==5) {
+     if(level!==4) {
       setLevel(level+1);
     } 
     setLevelSuccess(false); //so that editor appears again
@@ -124,25 +124,23 @@ export default function Game() {
           <div className="instructionBox">
             <h4> Instructions</h4>
             <p className="instructions">
-              Look at the code and spot the error! There are 5 levels of difficulty,
+              Look at the code and spot the error! There are 4 levels of difficulty,
               starting from EASY at Level 1 . Can you figure them all out and earn
               your Coding badge?
             </p>
             
             <div>
               <button className="btn" onClick={handlePlay}
-                disabled={play}>
+                disabled={play || levelSuccess}>
                 Play
               </button>
-              <button className="btn" onClick={handleRestart} disabled={!play}>
-                Restart Game
-              </button>
+             
               <div className="levelBox">{play ? <h5>Level {level}</h5> : null}</div>
             </div>
           </div>
 
           {/*HANDLING LEVEL SUCCESS */}
-          <div> 
+          <div className="successBox"> 
             {
             levelSuccess ? <div style={{width: "80%", marginLeft: "17%"}}> 
               <div>

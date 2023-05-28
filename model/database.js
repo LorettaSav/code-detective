@@ -19,7 +19,7 @@ con.connect(function(err) {
   console.log("Connected!");
 
   let sql =
-    "DROP TABLE if exists snippets; CREATE TABLE snippets(id INT NOT NULL AUTO_INCREMENT, code TEXT, level INT, PRIMARY KEY (id));";
+    "DROP TABLE if exists snippets; CREATE TABLE snippets(id INT NOT NULL AUTO_INCREMENT, code TEXT, level INT, tests TEXT, PRIMARY KEY (id));";
   con.query(sql, function(err, result) {
     if (err) throw err;
     console.log("Table creation `snippets` was successful!");

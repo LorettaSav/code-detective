@@ -42,8 +42,13 @@
 }
 .instructionBox {
   margin-right:2vw;
+  width:40%;
 }
 
+.successBox {
+  margin-left: 12vw;
+  width:70%;
+}
 .levelBox {
   margin-top: 2vw;
 }
