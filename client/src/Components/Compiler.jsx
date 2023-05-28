@@ -2,28 +2,30 @@ import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import { useRef } from "react";
 
-export default function Compiler({ snippets, gamePlay, level, settingLevel}) {
+export default function Compiler({ snippets, gamePlay, level, userResponse}) {
   //values to be received by game snippets to be shown on Editor
   const editorRef = useRef(null);
   const [toggleTheme, setToggleTheme] = useState(false); //light theme default
-  const [inputValue, setInputValue] = useState("");
-  const [compilerValue, setCompilerValue] = useState("");
-  //to know which snippet it is and retrieve when Restart is clicked on 
-  const [currentSnippet, setCurrentSnippet] = useState("");
+  const [compilerValue, setCompilerValue] = useState(""); //"code"
+  const [result, setResult] = useState('');
+  const [error, setError] = useState('');
+
+ 
 
   function handleEditorDidMount(editor, monaco) {
     // here is the editor instance
     // you can store it in `useRef` for further usage
     editorRef.current = editor;
   }
-
+  //getting the snippet that will be shown in editor
   let value;
-  //so basically this can be my import from DB to show challenges!
-  //WHY INFINITE LOOP??????????? maybe this should be in Game instead?
-  if( level > 0) {
+  //getting the snipped ID shown in editor
+  let question_id;
+  //so basically this can be my import from DB to show challenges
+    if( level > 0) {
     const randIndex = Math.floor(Math.random() * snippets.length);
     value = `${snippets.map((e) => e.code)[randIndex]}`;
-    setCurrentSnippet(value);
+    question_id = snippets.map((e) => e.id)[randIndex]; 
   }
 
   //Simple functionality of changing editor theme from light to dark. and vice versa.
@@ -34,45 +36,59 @@ export default function Compiler({ snippets, gamePlay, level, settingLevel}) {
   function handleInputValue(e) {
     e.preventDefault();
     const input = editorRef.current.getValue();
-    console.log(input)
-    setInputValue(input);
-    //sendAttempt(input)
+    // console.log("handleInputValue",input)
+    setCompilerValue(input)
+
+    //sendAttempt()
   }
 
   //To Test if player's attempt is correct using VM.
   //We need to test that we check the tests which have the same id as the
   // snippet.
 
-  // async function sendAttempt(input) {
-  //   const question_id = level; 
+  // async function sendAttempt() { 
+  //   //console.log(question_id)
   //   try {
-  //     const response = await fetch(` api/snippets/attempt/:${question_id}`, {
+  //     const response = await fetch(`/api/snippets/attempt/${question_id}`, {
   //       method: "POST",
-  //       body: JSON.stringify(input)
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({compilerValue})
   //     });
+      
   //     const data = await response.json();
-  //     if(!response.ok) throw new Error(data.message)
-  //     setCompilerValue(data);
+  //     //console.log( "sendAttempt", response)
+  //     if(!response.ok) throw new Error(data.error)
+  //     console.log(data) 
+  //     //why is there an error and why am i not catching it?
+  //     //setResult(data);
 
   //   } catch(err){
-  //     console.log(err)
+  //     setError(err);
+  //     console.log(error);
   //   }
   // }
 
-  //to handle level change => communicating to GAME and fetching
-  // appropriate data after successful attempt.
-  function handleNextLevel() {
-    settingLevel()
-  }
+  //GOING BLIND FOR SUCCESS/LOSS
+    function toggleWin() {
+      let rand = Math.floor(Math.random()*2);
+      if(rand === 0) {
+        userResponse(false);
+      } else if (rand === 1) {
+        userResponse(true);
+      }
 
+    }
+ 
   return (
     <div>
       <button className="btn" onClick={handleToggleTheme}>
-        {toggleTheme ? "Light theme" : "Dark theme"}{" "}
+        {toggleTheme  ? "Light theme" : "Dark theme"}{" "}
       </button>
       {/* Could maybe add an option for player to choose "light" or "vs-dark" and change page css accordingly?*/}
       <Editor
-        height="20vw"
+        height="40vw"
         theme={toggleTheme ? "vs-dark" : "light"}
         width="47.5vw"
         defaultLanguage="javascript"
@@ -81,13 +97,16 @@ export default function Compiler({ snippets, gamePlay, level, settingLevel}) {
         options={{ suggest: { preview: true } }}
       />
 
-      <button className="btn" onClick={handleInputValue}>
-        Submit Answer
-      </button>
-     {/* This button should only appear if user got question right */}
-      <button className="btn" onClick={handleNextLevel} disabled> Next </button>
-
+        {/*TEMP SUBMIT*/}
+        <button className="btn" onClick={toggleWin}>
+          Submit TEMP
+        </button>      
     </div>
   );
 }
 
+
+//    {/*When i click submit - editor shows another snippet, why? */}
+//    <button className="btn" onClick={handleInputValue}>
+//    Submit Answer
+//  </button>

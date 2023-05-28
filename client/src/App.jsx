@@ -1,17 +1,15 @@
 import { useState } from 'react';
 import './App.css'
-import { Link } from "react-router-dom";
-//import Home from './Components/Home';
+import { Link, Route, Routes} from "react-router-dom";
+import About from './Components/About';
 import Game from './Components/Game';
 
 
 function App() {
   // const [count, setCount] = useState(0);
 //  const [isUser, setIsUser] = useState(true); // for showing login options if not user.
-  const [isPlay, setIsPlay] = useState(false)
-
-
-
+  const [isPlay, setIsPlay] = useState(false);
+  
 
   return (
     <>
@@ -58,7 +56,7 @@ function App() {
         <Game play={isPlay}/>
       </div>
 
-      {/* My Routing*/}
+      
      
     </>
   )
