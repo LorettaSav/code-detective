@@ -39,47 +39,47 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
     const input = editorRef.current.getValue();
     setCompilerValue(input);
     // console.log("handleInputValue",input)
-   // sendAttempt(input)
+    sendAttempt(input)
   }
 
   //To Test if player's attempt is correct using VM.
   //We need to test that we check the tests which have the same id as the
   // snippet.
 
-  // async function sendAttempt(input) { 
-  //   //console.log(question_id)
-  //   try {
-  //     const response = await fetch(`/api/snippets/attempt/${question_id}`, {
-  //       method: "POST",
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({input})
-  //     });
+  async function sendAttempt(input) { 
+    //console.log(question_id)
+    try {
+      const response = await fetch(`/api/snippets/attempt/${question_id}`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({input})
+      });
       
-  //     const data = await response.json();
-  //     //console.log( "sendAttempt", response)
-  //     if(!response.ok) throw new Error(data.error)
-  //     console.log(data) 
-  //     //why is there an error and why am i not catching it?
-  //     //setResult(data);
+      const data = await response.json();
+      //console.log( "sendAttempt", response)
+      if(!response.ok) throw new Error(data.error)
+      console.log(data) 
+      //why is there an error and why am i not catching it?
+      //setResult(data);
 
-  //   } catch(err){
-  //     setError(err);
-  //     console.log(error);
-  //   }
-  // }
+    } catch(err){
+      setError(err);
+      console.log(error);
+    }
+  }
 
   //GOING BLIND FOR SUCCESS/LOSS
-    function toggleWin() {
-      let rand = Math.floor(Math.random()*2);
-      if(rand === 0) {
-        userResponse(false);
-      } else if (rand === 1) {
-        userResponse(true);
-      }
+    // function toggleWin() {
+    //   let rand = Math.floor(Math.random()*2);
+    //   if(rand === 0) {
+    //     userResponse(false);
+    //   } else if (rand === 1) {
+    //     userResponse(true);
+    //   }
 
-    }
+    // }
  
   return (
     <div>
@@ -97,12 +97,12 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
         options={{ suggest: { preview: true } }}
         />
 
-         {/*TEMP SUBMIT*/} 
-      <button className="btn" onClick={toggleWin}>   
-        Submit TEMP
-      </button>
+       
       
-      
+       {/*SOMETIMES When i click submit - editor shows another snippet, why? */}
+   <button className="btn" onClick={handleInputValue}>
+   Submit Answer
+ </button>
 
          
     </div>
@@ -111,8 +111,8 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
 
 //BUG ALERT!
 
-//    {/*SOMETIMES When i click submit - editor shows another snippet, why? */}
-//    <button className="btn" onClick={handleInputValue}>
-//    Submit Answer
-//  </button>
+  //   {/*TEMP SUBMIT*/} 
+  //   <button className="btn" onClick={toggleWin}>   
+  //   Submit TEMP
+  // </button>
     
