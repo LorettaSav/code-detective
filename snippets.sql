@@ -221,7 +221,7 @@ function filter(arr, cb) {
 }
 ',
 3,
-'results.push(map([5, 6, 7], e => e * 2).join("") === "101214") ');
+'results.push(filter([5, 6, 7], e => e * 2).join("") === "101214") ');
 
 --BUG: missing : false ; 
 

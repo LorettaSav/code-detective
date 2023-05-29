@@ -23,7 +23,7 @@ export default function Compiler({ snippets, gamePlay, level, userResult, userRe
   //so basically this can be my import from DB to show challenges
     
     if (level > 0) {
-    const randIndex = Math.floor(Math.random() * snippets.length);
+    const randIndex = Math.floor(Math.random() * 4);
     value = `${snippets.map((e) => e.code)[randIndex]}`;
     question_id = snippets.map((e) => e.id)[randIndex]; 
   }

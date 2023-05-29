@@ -111,8 +111,12 @@ export default function Game() {
   
 
   return (
+    
     <div>
-      {levelLoss ? <LossView tryAgain={ (loss,success,play,level) => handleTryAgain(loss,success,play,level)} /> :
+
+        { levelSuccess && level === 4 ? <WinView/> :   
+        
+        levelLoss ? <LossView tryAgain={(loss, success, play, level) => handleTryAgain(loss, success, play, level)} /> :
         
         <div className="gameBox">
           <div className="instructionBox">
@@ -146,6 +150,7 @@ export default function Game() {
           </div>
         </div>
       } 
+
     </div>
   );
 }

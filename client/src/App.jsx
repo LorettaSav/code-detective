@@ -3,6 +3,7 @@ import './App.css'
 import { Link, Route, Routes} from "react-router-dom";
 import About from './Components/About';
 import Game from './Components/Game';
+import WinView from './Components/WinView';
 
 
 function App() {
@@ -55,7 +56,8 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Game play={isPlay} />} />
-        <Route path="/aboutProject" element={<About/>}/>
+        <Route path="/aboutProject" element={<About />} />
+        <Route path="/winning" element={<WinView/>} />
       </Routes>
       
      
