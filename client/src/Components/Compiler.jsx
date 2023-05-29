@@ -17,6 +17,7 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
     // you can store it in `useRef` for further usage
     editorRef.current = editor;
   }
+  
   //getting the snippet that will be shown in editor
   let value;
   //getting the snipped ID shown in editor
@@ -36,17 +37,16 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
   function handleInputValue(e) {
     e.preventDefault();
     const input = editorRef.current.getValue();
+    setCompilerValue(input);
     // console.log("handleInputValue",input)
-    setCompilerValue(input)
-
-    //sendAttempt()
+   // sendAttempt(input)
   }
 
   //To Test if player's attempt is correct using VM.
   //We need to test that we check the tests which have the same id as the
   // snippet.
 
-  // async function sendAttempt() { 
+  // async function sendAttempt(input) { 
   //   //console.log(question_id)
   //   try {
   //     const response = await fetch(`/api/snippets/attempt/${question_id}`, {
@@ -54,7 +54,7 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
   //       headers: {
   //         'Content-Type': 'application/json',
   //       },
-  //       body: JSON.stringify({compilerValue})
+  //       body: JSON.stringify({input})
   //     });
       
   //     const data = await response.json();
@@ -88,25 +88,31 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
       </button>
       {/* Could maybe add an option for player to choose "light" or "vs-dark" and change page css accordingly?*/}
       <Editor
-        height="40vw"
+        height="30vw"
         theme={toggleTheme ? "vs-dark" : "light"}
         width="50vw"
         defaultLanguage="javascript"
         value = {gamePlay? value : "//Welcome, Detective!!"}
         onMount={handleEditorDidMount}
         options={{ suggest: { preview: true } }}
-      />
+        />
 
-        {/*TEMP SUBMIT*/}
-        <button className="btn" onClick={toggleWin}>
-          Submit TEMP
-        </button>      
+         {/*TEMP SUBMIT*/} 
+      <button className="btn" onClick={toggleWin}>   
+        Submit TEMP
+      </button>
+      
+      
+
+         
     </div>
   );
 }
 
+//BUG ALERT!
 
-//    {/*When i click submit - editor shows another snippet, why? */}
+//    {/*SOMETIMES When i click submit - editor shows another snippet, why? */}
 //    <button className="btn" onClick={handleInputValue}>
 //    Submit Answer
 //  </button>
+    

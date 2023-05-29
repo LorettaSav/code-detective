@@ -52,14 +52,10 @@ function App() {
 
       <h1>  Code Detective </h1>
       </div>
-      <div>
-        <Game play={isPlay}/>
-      </div>
 
       <Routes>
-        <Route path="/" element={<Game />} />
-        {/* what am i doing wrong?*/}
-        <Route path="/aboutProject" element={<About/>} />
+        <Route path="/" element={<Game play={isPlay} />} />
+        <Route path="/aboutProject" element={<About/>}/>
       </Routes>
       
      
