@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Compiler from "./Compiler";
 import SuccessView from "./SuccessView";
 import LossView from "./LossView";
+import WinView from "./WinView";
 
 export default function Game() {
   const [snippets, setSnippets] = useState([]);
@@ -10,19 +11,12 @@ export default function Game() {
   const [level, setLevel] = useState(0); // to keep track of levels, fetch level snippets and update level on client screen
   const [levelSuccess, setLevelSuccess] = useState(false);
   const [levelLoss, setLevelLoss] = useState(false);
+  const [info, setInfo] = useState('');
+
   
   useEffect(() => {
     getSnippets();
   }, [level]); // a dependency of getting appropriate snippets when change of level?
-
-  //setting play to true or false and handle start of game
-  // the level needs to be set to one.
-  function handlePlay() {
-    setPlay(true);
-    setLevel(1);
-    // console.log("handleplay",level)
-  }
-
 
   //Get snippets in random order according to level.
   function getSnippets(level_id) {
@@ -30,6 +24,20 @@ export default function Game() {
     sendRequest("GET", level_id);
   }
 
+  //HANDLING COMPILER RESULT
+  function handleResult(result) {
+    (result === "your code passes all tests!" ? setLevelSuccess(true) : setLevelLoss(true))
+  }
+
+  //GAME PLAY
+
+  //setting play to true or false and handle start of game
+  // the level needs to be set to one.
+  function handlePlay() {
+    setPlay(true);
+    setLevel(1);
+    // console.log("handleplay",level)
+  }  
 
   function handleSuccess() {
     //if level successful
@@ -39,28 +47,28 @@ export default function Game() {
     //if last level was passed
     // call handleWin();
   } 
+
   function handleNext(success,play) {
     //to check that we are not on the last level
-    if(level!==4) {
-     setLevel(level+1);
+    if (level !== 4) {
+      setLevel(level + 1);
     } 
-   setLevelSuccess(false); //so that editor appears again
-   setPlay(true);
+    setLevelSuccess(success); //so that editor appears again
+    setPlay(play);
  }
 
   function handleLoss() {
     //if level has not been successful
-    // A new page/screen to start over?
     setLevelLoss(true);
 
   }
   
-  function handleTryAgain() {
+  function handleTryAgain(loss,success,play,level) {
     //Resetting
-    setLevelLoss(false);
-    setLevelSuccess(false);
-    setPlay(false)
-    setLevel(0);
+    setLevelLoss(loss);
+    setLevelSuccess(success);
+    setPlay(play)
+    setLevel(level);
   }
 
   //GOING IN BLIND FOR SUCCESS/LOSS
@@ -76,6 +84,9 @@ export default function Game() {
       }
 
   }
+
+
+  //CONNECTING WITH DB
 
   async function sendRequest(method, level_id = "", options) {
     level_id = level;
@@ -116,7 +127,6 @@ export default function Game() {
               Can you figure them all out and earn
               your Coding badge?
             </p>
-            
             <div>
               <button className="btn" onClick={handlePlay}
                 disabled={play || levelSuccess}>
@@ -131,14 +141,13 @@ export default function Game() {
           <div className="successBox"> 
             {
               levelSuccess ? <SuccessView handleNext={ (success,play) => handleNext(success,play)}  level={level} level={level} /> : 
-              <Compiler snippets={snippets} gamePlay={play} level={level} userResponse = {(res) => handleResponse(res)}/>
+                <Compiler snippets={snippets} gamePlay={play} level={level} userResult={(res) => handleResult(res)} userResponse = {(res) => handleResponse(res)}/>
             }
           </div>
         </div>
-      }
+      } 
     </div>
   );
 }
 
 
-//userResponse = {(res) => handleResponse(res)}

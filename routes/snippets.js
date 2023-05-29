@@ -74,12 +74,13 @@ router.post("/attempt/:question_id", async function (req, res, next) {
       
       
       if (context.results.every((r) => r)) {
-        res.send("your code passes all tests!");
+        res.send({ message: "your code passes all tests!"});
       } else {
-        res.send("sorry, try again!");
+        res.send({ message: "sorry, try again!" });
       }
      } catch (error) {
-       console.log(error)
+       //console.log(error)
+       res.send({message: error.message})
     }
   
 });

@@ -2,12 +2,10 @@ import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import { useRef } from "react";
 
-export default function Compiler({ snippets, gamePlay, level, userResponse}) {
+export default function Compiler({ snippets, gamePlay, level, userResult, userResponse,loss, success}) {
   //values to be received by game snippets to be shown on Editor
   const editorRef = useRef(null);
   const [toggleTheme, setToggleTheme] = useState(false); //light theme default
-  const [compilerValue, setCompilerValue] = useState(""); //"code"
-  const [result, setResult] = useState('');
   const [error, setError] = useState('');
 
  
@@ -23,7 +21,8 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
   //getting the snipped ID shown in editor
   let question_id;
   //so basically this can be my import from DB to show challenges
-    if( level > 0) {
+    
+    if (level > 0) {
     const randIndex = Math.floor(Math.random() * snippets.length);
     value = `${snippets.map((e) => e.code)[randIndex]}`;
     question_id = snippets.map((e) => e.id)[randIndex]; 
@@ -37,7 +36,6 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
   function handleInputValue(e) {
     e.preventDefault();
     const input = editorRef.current.getValue();
-    setCompilerValue(input);
     // console.log("handleInputValue",input)
     sendAttempt(input)
   }
@@ -62,11 +60,11 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
       if(!response.ok) throw new Error(data.error)
       console.log(data) 
       //why is there an error and why am i not catching it?
-      //setResult(data);
+      userResult(data.message);
 
     } catch(err){
       setError(err);
-      console.log(error);
+      
     }
   }
 
@@ -96,13 +94,12 @@ export default function Compiler({ snippets, gamePlay, level, userResponse}) {
         onMount={handleEditorDidMount}
         options={{ suggest: { preview: true } }}
         />
-
-       
       
        {/*SOMETIMES When i click submit - editor shows another snippet, why? */}
-   <button className="btn" onClick={handleInputValue}>
-   Submit Answer
- </button>
+      <button className="btn" onClick={handleInputValue}>
+        Submit Answer
+      </button>
+      
 
          
     </div>

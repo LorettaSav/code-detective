@@ -14,7 +14,7 @@ function isEven(n) {
 results.push(isEven(4) === "its even" && isEven(189) === "its not even")
 ');
 
---BUG: !n%2 or n%2 === 0 or reverse return statements // rn isEven(4) === "its not even"
+--BUG: [!n%2 ===> not acceptable as an answer in VM] or n%2 === 0 or reverse return statements // rn isEven(4) === "its not even"
 
 
 --2
@@ -29,7 +29,7 @@ function findEven(array) {
         return newArr;
   }
 }',
-2 ,
+1 ,
 '
 results.push(findEven(arr=[1,2,3,4,5,6]).join() === "2,4,6"  &&  findEven(arr=[1,3,5]) === "no even numbers")
 ');
@@ -98,7 +98,7 @@ function getSum(arr) {
     //CALCULATES SUM OF NUMBERS IN ARRAY
     let sum = 0;
     for (let num of arr) {
-        if( typeof(num) !== number) {  
+        if( typeof(num) !== "number") {  
             return "array of numbers needed"
         } else {  
             sum =+ num; 
@@ -146,7 +146,7 @@ function factorial(x) {
 }
 ',
 2,
-'results.push(factorial(3) === 6');
+'results.push(factorial(3) === 6)');
 
 --BUG: returns x instead of 1
 
