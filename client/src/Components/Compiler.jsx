@@ -10,7 +10,7 @@ export default function Compiler({ snippets, gamePlay, level, userResult}) {
 
  
 
-  function handleEditorDidMount(editor, monaco) {
+  function handleEditorDidMount(editor) {
     // here is the editor instance
     // you can store it in `useRef` for further usage
     editorRef.current = editor;
@@ -85,7 +85,7 @@ export default function Compiler({ snippets, gamePlay, level, userResult}) {
         options={{ suggest: { preview: true } }}
         />
       
-      <button className="btn" onClick={handleInputValue}>
+      <button className="btn" onClick={handleInputValue} disabled={!gamePlay}>
         Submit Answer
       </button>
       

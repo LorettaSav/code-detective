@@ -69,7 +69,7 @@ export default function Game() {
 
   async function sendRequest(method, level_id = "", options) {
     level_id = level;
-    // console.log("sendrequest",level_id)
+    // console.log("sendRequest",level_id)
     try {
       // update task from database
       const response = await fetch(`/api/snippets/level/${level_id}`, {
