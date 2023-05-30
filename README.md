@@ -49,13 +49,7 @@ Table: snippets
 
 ### FRONT END ARCHITECTURE
 
-graph LR
-A[App] --> B((Game))
-A --> E((About))
-B --> C(Compiler)
-B --> F(SuccessView)
-B --> G(LossView)
-B --> H(WinView)
+![front end diagram of components](https://mermaid.ink/img/pako:eNpdz70OgjAUhuFbac5UErgBBhPAvwEXSXSwDpUepZH-pLQxhnDvVkwY3E6enOF7R2iNQMjh4bjtSH1kurgU1l5Jlq1ISemOK0ySqDNsKC1uJvivlLNUtDLKyh7dQlvahLbFYThJfC26o7X5oz09Sz0LpKDQKS5FnDIyTQgD36FCBnk8BXdPBkxP8Y8Hb5q3biH3LmAKwQrucS15LFCQ33k_REUhvXGHX9ucOH0AmY9Jhw?type=png)
 
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona by Loretta Savvidou._
