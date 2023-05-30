@@ -51,5 +51,10 @@ Table: snippets
 
 ![front end diagram of components](https://mermaid.ink/img/pako:eNpdz70OgjAUhuFbac5UErgBBhPAvwEXSXSwDpUepZH-pLQxhnDvVkwY3E6enOF7R2iNQMjh4bjtSH1kurgU1l5Jlq1ISemOK0ySqDNsKC1uJvivlLNUtDLKyh7dQlvahLbFYThJfC26o7X5oz09Sz0LpKDQKS5FnDIyTQgD36FCBnk8BXdPBkxP8Y8Hb5q3biH3LmAKwQrucS15LFCQ33k_REUhvXGHX9ucOH0AmY9Jhw?type=png)
 
+### COMMUNICATION BETWEEN BACKEND, API, VIRTUAL MODEL and FRONTEND
+
+![communication of fullstack diagram](https://mermaid.ink/img/pako:eNptUcFKAzEQ_ZUh5y3egywoKngoFio95ZJNpjV0dxInE2kp_Xezuy1W8ZZM3pv3Xt5JuehRaZXxsyA5fAp2x3Yw9Gjd_pk8LNoWHlavGjKFlFAyiO161HDf8V07shvo8Qv7BgSzZEMVPZJeOJLUDTfMhDxjIdDMZ0s-DhDZI8_MxQEu0hpWb-t3kDhD_xi4DJF8ioEE8BCqOnRFgKJAyejB0NXET4z6wDDa_ifiFAC2kSEndGEb3AU5GauozfJmweisw4lUtWqQ6gFdqRdDmyX8_oMRFWgHjLn0Y4aJ60NOvT2iV40akAcbfO3iZAjAKPnAAY3S9egt740ydK44WySuj-SUFi7YqJK8lWtvSm9tn-sUfZDIy7ncqePzN1V2p54?type=png)
+
+
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona by Loretta Savvidou._
