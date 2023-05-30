@@ -3,7 +3,6 @@ import './App.css'
 import { Link, Route, Routes} from "react-router-dom";
 import About from './Components/About';
 import Game from './Components/Game';
-import WinView from './Components/WinView';
 
 
 function App() {

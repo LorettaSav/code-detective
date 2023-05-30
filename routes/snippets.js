@@ -41,7 +41,7 @@ router.get("/:snippet_id", async function (req, res, next) {
   }
 });
 
-// INSERTING NEW CODE SNIPPET
+// POST NEW CODE SNIPPET
 router.post("/", async function (req, res, next) {
   const { code, tests, level } = req.body;
 
@@ -60,7 +60,7 @@ router.post("/", async function (req, res, next) {
 router.post("/attempt/:question_id", async function (req, res, next) {
   const { question_id } = req.params;
   //console.log(question_id)
-  const { input } = req.body;
+  const { input } = req.body; //this needs to match the Front End (see Compiler.jsx the sendAttempt function)
   
      try {
       const context = {results: []}; // Create a new context object for the VM execution
@@ -88,37 +88,4 @@ router.post("/attempt/:question_id", async function (req, res, next) {
   
 });
 
-//TESTING
-//ummm do i need to add stuff to database.js?
-// router.get("/test", async function (req, res,next){
-//   try {
-//     const data = await db(`SELECT * FROM test`);
-//     res.send(data) 
-//   }catch(err){
-//     console.log(err)
-//   }
-// })
-
-// router.post("/test/attempt/:id", async function (req, res, next) {
-//   const { id } = req.params;
-//   const context = { results: [] };
-//   vm.createContext(context);
-//   const { code } = req.body;
-//   // const { id } = req.params;
-
-//   const results = await db(`SELECT * FROM test WHERE id = ${id};`);
-//   const tests = results.data[0].tests;
-
-//   // QUESTION: how to get specific id for testing and
-//   // then HOW to test? get id/ get tests but then the results?
-//   // As they are?
-
-//   vm.runInContext(code + tests, context);
-
-//   if (context.results.every((r) => r)) {
-//     res.send("your code passes all tests!");
-//   } else {
-//     res.send("try again");
-//   }
-// });
 module.exports = router;

@@ -1,5 +1,5 @@
 #root {
-  max-width: 1280px;
+  /* max-width: 1280px; */
   margin:0 auto;
   background-color: #222629;
   width:90%;
@@ -38,11 +38,11 @@
 
 .gameBox {
   display: flex;
-  margin-top: 2vw;
+  /* margin-top: 10vw; */
 }
 .instructionBox {
-  margin-right:2vw;
-  width:40%;
+  /* margin-right:0vw; */
+  width:70%;
 }
 
 .successBox {
@@ -63,7 +63,6 @@ ul li {
 }
 
 
-
 /* .cardBox {
   justify-content: space-between;
 } */
@@ -71,14 +70,10 @@ ul li {
 .btn {
   background-color: #86c232;
   color:#222629;
-  margin: 1vw 1vw 1vw 0;
+  margin: 0.5vw 0.5vw 0.5vw 0;
 }
 
 .btn:hover {
   background-color: rgb(247, 74, 120);
 }
 
-.main {
-  padding: 2vw;
-  width: 500px;
-}
