@@ -11,7 +11,6 @@ export default function Game() {
   const [level, setLevel] = useState(0); // to keep track of levels, fetch level snippets and update level on client screen
   const [levelSuccess, setLevelSuccess] = useState(false);
   const [levelLoss, setLevelLoss] = useState(false);
-  const [info, setInfo] = useState('');
 
   
   useEffect(() => {
@@ -39,15 +38,6 @@ export default function Game() {
     // console.log("handleplay",level)
   }  
 
-  function handleSuccess() {
-    //if level successful
-    setLevelSuccess(true);
-    setPlay(false);
-   
-    //if last level was passed
-    // call handleWin();
-  } 
-
   function handleNext(success,play) {
     //to check that we are not on the last level
     if (level !== 4) {
@@ -57,34 +47,23 @@ export default function Game() {
     setPlay(play);
  }
 
-  function handleLoss() {
-    //if level has not been successful
-    setLevelLoss(true);
-
-  }
+  
+  //     NEEDS CHECKING!!!!!!!!
   
   function handleTryAgain(loss,success,play,level) {
     //Resetting
     setLevelLoss(loss);
     setLevelSuccess(success);
     setPlay(play)
-    setLevel(level);
+    setLevel(1);
   }
 
-  //GOING IN BLIND FOR SUCCESS/LOSS
-  function handleResponse(res) {
-    console.log(res)
-    if (res) {
-      //setLevelSuccess(true) ==> new div "you got it"/no editor
-      // set level to +1.
-      handleSuccess();
-    } else {
-      //setHandleLoss(true) ==> new div + try again Button
-      handleLoss();
+  function handlePlayAgain(play) {
+    if (play) {
+      handleTryAgain()
+      setPlay(true)
       }
-
   }
-
 
   //CONNECTING WITH DB
 
@@ -114,7 +93,7 @@ export default function Game() {
     
     <div>
 
-        { levelSuccess && level === 4 ? <WinView/> :   
+      {levelSuccess && level === 4 ? <WinView playAgain={ (res) => handlePlayAgain(res)} /> :   
         
         levelLoss ? <LossView tryAgain={(loss, success, play, level) => handleTryAgain(loss, success, play, level)} /> :
         
@@ -144,8 +123,8 @@ export default function Game() {
           {/*HANDLING LEVEL SUCCESS */}
           <div className="successBox"> 
             {
-              levelSuccess ? <SuccessView handleNext={ (success,play) => handleNext(success,play)}  level={level} level={level} /> : 
-                <Compiler snippets={snippets} gamePlay={play} level={level} userResult={(res) => handleResult(res)} userResponse = {(res) => handleResponse(res)}/>
+              levelSuccess ? <SuccessView handleNext={ (success,play) => handleNext(success,play)}  level={level} /> : 
+                <Compiler snippets={snippets} gamePlay={play} level={level} userResult={(res) => handleResult(res)} />
             }
           </div>
         </div>

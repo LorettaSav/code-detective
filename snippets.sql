@@ -157,6 +157,7 @@ function factorial(x) {
 --LEVEL 3
 
 --1
+-- *** not working in VM ***
 INSERT INTO snippets (code,level,tests) VALUES ('
 function capitaliseFirstLetter(str) {
     //will capitalise every first letter
@@ -195,6 +196,7 @@ function getTotal(numArray) {
 
 
 --3
+-- *** not working in VM ***
 INSERT INTO snippets (code,level,tests) VALUES ('
 function map(arr, cb) {
     
@@ -211,6 +213,7 @@ function map(arr, cb) {
 
 
 --4
+-- *** not working in VM ***
 INSERT INTO snippets (code,level,tests) VALUES ('
 function filter(arr, cb) {
     let resultArr = [];

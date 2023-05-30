@@ -2,7 +2,7 @@ import { useState } from "react";
 import Editor from "@monaco-editor/react";
 import { useRef } from "react";
 
-export default function Compiler({ snippets, gamePlay, level, userResult, userResponse,loss, success}) {
+export default function Compiler({ snippets, gamePlay, level, userResult}) {
   //values to be received by game snippets to be shown on Editor
   const editorRef = useRef(null);
   const [toggleTheme, setToggleTheme] = useState(false); //light theme default
@@ -68,25 +68,15 @@ export default function Compiler({ snippets, gamePlay, level, userResult, userRe
     }
   }
 
-  //GOING BLIND FOR SUCCESS/LOSS
-    // function toggleWin() {
-    //   let rand = Math.floor(Math.random()*2);
-    //   if(rand === 0) {
-    //     userResponse(false);
-    //   } else if (rand === 1) {
-    //     userResponse(true);
-    //   }
 
-    // }
- 
   return (
     <div>
       <button className="btn" onClick={handleToggleTheme}>
-        {toggleTheme  ? "Light theme" : "Dark theme"}{" "}
+        {toggleTheme  ? "Light theme" : "Dark theme"}
       </button>
       {/* Could maybe add an option for player to choose "light" or "vs-dark" and change page css accordingly?*/}
       <Editor
-        height="30vw"
+        height="20vw"
         theme={toggleTheme ? "vs-dark" : "light"}
         width="50vw"
         defaultLanguage="javascript"
@@ -95,7 +85,6 @@ export default function Compiler({ snippets, gamePlay, level, userResult, userRe
         options={{ suggest: { preview: true } }}
         />
       
-       {/*SOMETIMES When i click submit - editor shows another snippet, why? */}
       <button className="btn" onClick={handleInputValue}>
         Submit Answer
       </button>
@@ -105,11 +94,3 @@ export default function Compiler({ snippets, gamePlay, level, userResult, userRe
     </div>
   );
 }
-
-//BUG ALERT!
-
-  //   {/*TEMP SUBMIT*/} 
-  //   <button className="btn" onClick={toggleWin}>   
-  //   Submit TEMP
-  // </button>
-    

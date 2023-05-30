@@ -59,7 +59,7 @@ router.post("/", async function (req, res, next) {
 // ATTEMPTING TO RUN CODE WITH TESTS
 router.post("/attempt/:question_id", async function (req, res, next) {
   const { question_id } = req.params;
-  console.log(question_id)
+  //console.log(question_id)
   const { input } = req.body;
   
      try {
@@ -69,10 +69,11 @@ router.post("/attempt/:question_id", async function (req, res, next) {
       const results = await db(`SELECT * FROM snippets where id = ${question_id};`)
  
       const tests = results.data[0].tests; 
-      const result = vm.runInNewContext(input + tests, context);
+      
       // Execute the code and capture the result
+      vm.runInNewContext(input + tests, context);
       
-      
+      //.every() returns true or false if all elements of array match the condition
       if (context.results.every((r) => r)) {
         res.send({ message: "your code passes all tests!"});
       } else {
@@ -80,6 +81,8 @@ router.post("/attempt/:question_id", async function (req, res, next) {
       }
      } catch (error) {
        //console.log(error)
+
+       //capturing the error in an object to be able to use in FE
        res.send({message: error.message})
     }
   

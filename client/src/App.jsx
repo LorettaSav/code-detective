@@ -57,7 +57,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Game play={isPlay} />} />
         <Route path="/aboutProject" element={<About />} />
-        <Route path="/winning" element={<WinView/>} />
       </Routes>
       
      
