@@ -23,12 +23,14 @@ export default function Compiler({ snippets, gamePlay, level, userResult}) {
   //so basically this can be my import from DB to show challenges
     
     if (level > 0) {
-    const randIndex = Math.floor(Math.random() * snippets.length);
+    const randIndex = Math.floor(Math.random() * 3);
     value = `${snippets.map((e) => e.code)[randIndex]}`;
     question_id = snippets.map((e) => e.id)[randIndex]; 
   }
 
   //Simple functionality of changing editor theme from light to dark. and vice versa.
+  //BUG:after many toggles the snippet changes. has to do with the fact that
+  //the map function above,isnt in a function. it would b maybe optimal to have it in game.jsx and in the handlePlay function..
   function handleToggleTheme() {
     setToggleTheme(!toggleTheme);
   }
